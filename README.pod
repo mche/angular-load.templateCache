@@ -56,4 +56,14 @@ Optional string B<done_name> for checking when all temlates loaded success. Defa
 
 When all templates done then unshift to B<conf_array> the element string B<done_name>.
 
+File template format for split:
+
+  @@@ my/foo1.html
+  
+  <h1>Foo 1</h>
+  
+  @@@ my/foo2.html
+  
+  <div> My foo 2 </div>
+
 =cut
