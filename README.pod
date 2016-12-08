@@ -13,10 +13,20 @@
 HTML:
 
   ...
-  <script src="<path to>/scrip.js"></script>
+  <div ng-app="myApp" ng-controller="myCtrl as crtl">
+    <div ng-if=" ctrl.tpls[0] != 'done' ">Loading templates ...</div>
+  </div>
+  <script src="<path to>/scrip.min.js"></script>
 
 JS:
 
-  angular.module('myApp', ['load.templateCache'])...
+  angular.module('myApp', ['load.templateCache'])
+  
+  .controller('myCtrl', function (loadTemplateCache){
+    
+    this.tpls = ["/app/templates/foo/bar.tpl.html", "/app/templates/bar/foo.tpl.html"];
+    loadTemplateCache.split(this.tpls, "done");
+    
+  });
 
 =cut
