@@ -29,7 +29,7 @@ angular.module('load.templateCache', [])
       //~ console.log(url, $http);
       $http.get(url, {"cache": true}).then(function (resp) {
         var splt = resp.data.split(re.mojo);
-        console.log(splt);
+        //~ console.log(splt);
         //~ var result;
         //~ while (result = re.mojo.exec(resp.data)) {
           //~ console.log(result);
@@ -38,7 +38,7 @@ angular.module('load.templateCache', [])
           var id = splt.shift();
           if (id == "") continue;
           var tpl = splt.shift();
-          console.log(id, "=>>>", tpl);
+          console.log("Template: ", id);
           $templateCache.put(id, tpl);
         }
         var idx = arr.indexOf(url);
