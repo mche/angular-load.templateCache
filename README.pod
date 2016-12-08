@@ -32,7 +32,10 @@ JS:
     this.tpls1 = ["/app/templates/foo/bar.tpl.html", "/app/templates/bar/foo.tpl.html"];
     loadTemplateCache.split(this.tpls1, "done");
     
-    this.tpls2 = {"my/foo1.html": "/app/templates/my/foo1.html", "my/foo2.html": "/app/templates/my/foo2.html"};
+    this.tpls2 = {
+      "my/foo1.html": "/app/templates/my/foo1.html",
+      "my/foo2.html": "/app/templates/my/foo2.html"
+    };
     loadTemplateCache.put(this.tpls2, "done");
   });
 
