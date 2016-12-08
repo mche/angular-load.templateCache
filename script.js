@@ -38,7 +38,7 @@ angular.module('load.templateCache', [])
           var id = splt.shift();
           if (id == "") continue;
           var tpl = splt.shift();
-          console.log("Template: ", id);
+          //~ console.log("Template: ", id);
           $templateCache.put(id, tpl);
         }
         var idx = arr.indexOf(url);
