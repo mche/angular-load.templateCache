@@ -5,13 +5,14 @@ angular.module('load.templateCache', [])
 
 .service('loadTemplateCache', function ($http, $templateCache) {
   
-  this.put = function (conf) {
+  this.put = function (conf, done) {
+    done = done || "done";
     Object.keys(conf).map(function(key, index) {
       var url = conf[key];
       $http.get(url, {"cache": true}).then(function (resp) {
         $templateCache.put(key, resp.data);
         delete conf[key];
-        if (Object.keys(conf).length == 0) conf.ready = true;
+        if (Object.keys(conf).length == 0) conf[done] = true;
       });
     });
     
@@ -23,7 +24,7 @@ angular.module('load.templateCache', [])
   };
   
   this.split = function(arr, done) {// массив урлов done - строка помещается в массив после выработки всех урлов
-    done = done || 'complete';
+    done = done || "done";
     //~ return console.log(arr);
     arr.map(function(url, index) {
       //~ console.log(url, $http);
@@ -45,7 +46,7 @@ angular.module('load.templateCache', [])
         //~ arr.slice(idx, 1);
         delete arr[idx];
         
-        if (arr.join('') == "") arr[0] = done;
+        if (arr.join('') == "") arr.unshift(done);
         //~ console.log("Массив ", arr);
       });
     });

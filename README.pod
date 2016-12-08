@@ -8,13 +8,17 @@
 
 =head1 Angular module load.templateCache
 
+Loading templates to $templateCache.
+
 =head1 SYNOPSIS
 
 HTML:
 
   ...
   <div ng-app="myApp" ng-controller="myCtrl as crtl">
-    <div ng-if=" ctrl.tpls[0] != 'done' ">Loading templates ...</div>
+    <div ng-if=" ctrl.tpls1[0] != 'ready' ">Loading templates ...</div>
+    
+    <div ng-show=" ctrl.tpls2.ready ">My templates ready!</div>
   </div>
   
   <script src="<path to>/scrip.min.js"></script>
@@ -25,9 +29,31 @@ JS:
   
   .controller('myCtrl', function (loadTemplateCache){
     
-    this.tpls = ["/app/templates/foo/bar.tpl.html", "/app/templates/bar/foo.tpl.html"];
-    loadTemplateCache.split(this.tpls, "done");
+    this.tpls1 = ["/app/templates/foo/bar.tpl.html", "/app/templates/bar/foo.tpl.html"];
+    loadTemplateCache.split(this.tpls1, "ready");
     
+    this.tpls2 = {"my/foo1.html": "/app/templates/my/foo1.html", "my/foo2.html": "/app/templates/my/foo2.html"};
+    loadTemplateCache.put(this.tpls2, "ready");
   });
+
+
+=head1 METHODS
+
+=head2 put(conf_obj, done_name)
+
+Will load to $templateCache from B<conf_obj> with pairs "template id/name"=>"an url".
+
+Optional string B<done_name> for checking when all temlates loaded success. Default to "done".
+
+When all templates done then set B<conf_obj> element name B<done_name> to true;
+
+
+=head2 split(conf_array, done_name)
+
+Will load to $templateCache from B<conf_array> with urls.
+
+Optional string B<done_name> for checking when all temlates loaded success. Default to "done".
+
+When all templates done then unshift to B<conf_array> the element string B<done_name>.
 
 =cut
