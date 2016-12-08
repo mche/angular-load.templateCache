@@ -46,7 +46,7 @@ angular.module('load.templateCache', [])
         //~ arr.slice(idx, 1);
         delete arr[idx];
         
-        if (arr.join('') == "") arr[0] = done;
+        if (arr.join('') == "") arr.unshift(done);//arr[0] = done;
         //~ console.log("Массив ", arr);
       });
     });
