@@ -6,7 +6,7 @@ angular.module('load.templateCache', [])
 .service('loadTemplateCache', function ($http, $templateCache) {
   
   this.put = function (conf, done) {
-    done = done || "done";
+    done = done || "ready";
     Object.keys(conf).map(function(key, index) {
       var url = conf[key];
       $http.get(url, {"cache": true}).then(function (resp) {
@@ -24,7 +24,7 @@ angular.module('load.templateCache', [])
   };
   
   this.split = function(arr, done) {// массив урлов done - строка помещается в массив после выработки всех урлов
-    done = done || "done";
+    done = done || "ready";
     //~ return console.log(arr);
     arr.map(function(url, index) {
       //~ console.log(url, $http);
@@ -46,7 +46,7 @@ angular.module('load.templateCache', [])
         //~ arr.slice(idx, 1);
         delete arr[idx];
         
-        if (arr.join('') == "") arr.unshift(done);
+        if (arr.join('') == "") arr[0] = done;
         //~ console.log("Массив ", arr);
       });
     });
