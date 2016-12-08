@@ -1,0 +1,22 @@
+=pod
+
+=encoding utf8
+
+Доброго всем
+
+¡ ¡ ¡ ALL GLORY TO GLORIA ! ! !
+
+=head1 Angular module load.templateCache
+
+=head1 SYNOPSIS
+
+HTML:
+
+  ...
+  <script src="<path to>/scrip.js"></script>
+
+JS:
+
+  angular.module('myApp', ['load.templateCache'])...
+
+=cut
