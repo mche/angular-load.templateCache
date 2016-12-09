@@ -8,7 +8,7 @@
 
 =head1 Angular module load.templateCache
 
-Loading templates to $templateCache.
+Loading templates to $templateCache by two ways.
 
 =head1 SYNOPSIS
 
@@ -44,7 +44,7 @@ JS:
 
 =head2 put(conf_obj, done_name)
 
-Will load to $templateCache from B<conf_obj> with pairs "template id/name"=>"an url".
+Will load to $templateCache from B<conf_obj> with pairs "template id (name)": "an url".
 
 Optional string B<done_name> for checking when all temlates loaded success. Default to "ready".
 
