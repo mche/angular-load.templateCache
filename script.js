@@ -3,18 +3,29 @@
 
 angular.module('load.templateCache', [])
 
-.service('loadTemplateCache', function ($http, $templateCache) {
+.service('loadTemplateCache', function ($http, $templateCache, $q) {
   
-  this.put = function (conf, done) {
-    done = done || "ready";
-    Object.keys(conf).map(function(key, index) {
-      var url = conf[key];
-      $http.get(url, {"cache": true}).then(function (resp) {
-        $templateCache.put(key, resp.data);
-        delete conf[key];
-        if (Object.keys(conf).length == 0) conf[done] = true;
-      });
+  this.put = function (conf, flag_all) {// flag - returns $q.all(...)
+    var promise = [];
+    
+    angular.forEach(conf, function(url, key) {
+      var get = $http.get(url, {"cache": true}).then(
+        function (resp) {
+          //~ $timeout(function() {
+            $templateCache.put(key, resp.data);
+          //~ });
+        }
+      );
+      promise.push(get);
     });
+    
+    if (flag_all) return $q.all(promise);
+    
+    return promise;
+    
+    //~ return $q.all(promise);//.then(function(values){
+      //~ if (done) done();
+    //~ });
     
   };
   
@@ -23,12 +34,10 @@ angular.module('load.templateCache', [])
     
   };
   
-  this.split = function(arr, done) {// массив урлов done - строка помещается в массив после выработки всех урлов
-    done = done || "ready";
-    //~ return console.log(arr);
-    arr.map(function(url, index) {
+  this.split = function(arr, flag_all) {// массив урлов (flag_all - returns $q.all(...)
+    var promise = arr.map(function(url, index) {
       //~ console.log(url, $http);
-      $http.get(url, {"cache": true}).then(function (resp) {
+      return $http.get(url, {"cache": true}).then(function (resp) {
         var splt = resp.data.split(re.mojo);
         //~ console.log(splt);
         //~ var result;
@@ -50,6 +59,11 @@ angular.module('load.templateCache', [])
         //~ console.log("Массив ", arr);
       });
     });
+    
+    if (flag_all) return $q.all(promise);
+    
+    return promise;
+    
   };
   
 })
