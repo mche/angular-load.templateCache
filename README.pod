@@ -45,24 +45,20 @@ JS:
 
 =head1 METHODS
 
-=head2 put(conf_obj, done_name)
+=head2 put(conf_obj, flag)
 
 Will load to $templateCache from B<conf_obj> with pairs "template id (name)": "an url".
 
-Optional string B<done_name> for checking when all temlates loaded success. Default to "ready".
-
-When all templates done then set B<conf_obj> element name B<done_name> to true;
+Optional boolean B<flag> for resolve $q.all(<internal promises>) overvise returns array thus promises.
 
 
-=head2 split(conf_array, done_name)
+=head2 split(conf_array, flag)
 
 Will load to $templateCache from B<conf_array> with urls.
 
-Optional string B<done_name> for checking when all temlates loaded success. Default to "ready".
+Optional boolean B<flag> for resolve $q.all(<internal promises>) overvise returns array thus promises.
 
-When all templates done then unshift to B<conf_array> the element string B<done_name>.
-
-File template format for split:
+File template format for split each content of got urls:
 
   @@@ my/foo1.html
   
