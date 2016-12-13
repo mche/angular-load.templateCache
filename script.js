@@ -11,9 +11,7 @@ angular.module('load.templateCache', [])
     angular.forEach(conf, function(url, key) {
       var get = $http.get(url, {"cache": true}).then(
         function (resp) {
-          //~ $timeout(function() {
             $templateCache.put(key, resp.data);
-          //~ });
         }
       );
       promise.push(get);
@@ -22,10 +20,6 @@ angular.module('load.templateCache', [])
     if (flag_all) return $q.all(promise);
     
     return promise;
-    
-    //~ return $q.all(promise);//.then(function(values){
-      //~ if (done) done();
-    //~ });
     
   };
   
@@ -47,9 +41,6 @@ angular.module('load.templateCache', [])
           //~ console.log("Template: ", id);
           $templateCache.put(id, tpl);
         }
-        //~ var idx = arr.indexOf(url);
-        //~ delete arr[idx];
-        //~ if (arr.join('') == "") arr.unshift(done);//arr[0] = done;
       });
       
       promise.push(get);
