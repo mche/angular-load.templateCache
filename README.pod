@@ -32,6 +32,8 @@ JS:
     "my/foo2.html": "/app/templates/my/foo2.html"
   };
   
+  var tpls3 = "/app/templates/my/foo3.html";
+  
   angular.module('myApp', ['load.templateCache'])
   
   .controller('myCtrl', function (loadTemplateCache, $q){
@@ -40,21 +42,26 @@ JS:
     loadTemplateCache.split(tpls1, 1).then(function () {self.ready1 = true;});
     var promises = loadTemplateCache.put(tpls2);
     $q.all(promises).then(function () {self.ready2 = true;});
+    
+    loadTemplateCache.split(tpls3 ....
+    
   });
+  
+  
 
 
 =head1 METHODS
 
-=head2 put(conf_obj, flag)
+=head2 put(urls_obj, flag)
 
-Will load to $templateCache from B<conf_obj> with pairs "template id (name)": "an url".
+Will load to $templateCache from B<urls_obj> with pairs "template id (name)": "an url".
 
 Optional boolean B<flag> for resolve $q.all(<internal promises>) overvise returns array thus promises.
 
 
-=head2 split(conf_array, flag)
+=head2 split(C<urls_array_or_single_scalar_url>, flag)
 
-Will load to $templateCache from B<conf_array> with urls.
+Will load to $templateCache from B<urls_array_or_single_scalar_url> with urls.
 
 Optional boolean B<flag> for resolve $q.all(<internal promises>) overvise returns array thus promises.
 
