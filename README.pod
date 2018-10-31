@@ -8,6 +8,6 @@
 
 =head1 Angular module load.templateCache
 
-See here L<https://github.com/mche/loviga/tree/master/static/controllers/template-cache>
+See here L<https://github.com/mche/sost/tree/master/static/js/controllers/template-cache>
 
 =cut
